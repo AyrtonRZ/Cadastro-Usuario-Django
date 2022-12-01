@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  {% block titulo %}
+  <title>Formulário de Login e Cadastro</title>
+  {% endblock %}
+  <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+</head>
+<body>
+  <a href="{% url 'home' %}">PAGINA INICIAL</a><br><br>
+  <a href="{% url 'pessoa.novo' %}">CADASTRO</a><br><br>
+  <a href="{% url 'pessoa.index' %}">LISTA DE CADASTROS</a><br><br>
+
+  {% block content %}
+  {% endblock %}
+</body>
+</html>

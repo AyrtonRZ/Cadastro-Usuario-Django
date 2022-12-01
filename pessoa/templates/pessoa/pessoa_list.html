@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+
+
+{% block titulo %}
+<title>Formulario de Cadastro</title>
+{% endblock %}
+
+
+{% block content %}
+<br>
+<form >
+    <input type="text" name="nome" placeholder="Buscar por nome"/>
+    <input type="submit"value="Buscar"/>
+</form><br>
+<h3>Lista de Pessoas Cadastradas</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Data de Nascimento</th>
+            <th>Ativa</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pessoa in object_list %}
+        <tr>
+            <td>{{ pessoa.nome_completo }}</td>
+            <td>{{ pessoa.data_nascimento|date:"SHORT_DATE_FORMAT"}}</td>
+            <td>
+                {% if pessoa.ativa %}
+                Sim
+                {% else %}
+                Não 
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'pessoa.editar' pessoa.pk %}">Editar</a>
+                <a href="{% url 'pessoa.remover' pessoa.pk %}">Remover</a>
+                <a href="{% url 'pessoa.contatos' pessoa.pk %}">Contatos</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
